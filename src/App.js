@@ -1,16 +1,32 @@
 import './App.css';
 import Header from './Components/Header';
 import Slider from './Components/Slider';
+import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import WatchList from './Components/WatchList';
+import Movies from './Components/Movies';
+import Sports from './Components/Sports';
+import Home from './Components/Home';
+import SignUp from './Components/SignUp';
 
 
 function App() {
   return (
-    <div>
+    <Router>
       <div>
         <Header />
-        <Slider />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/watchlist" element={<WatchList  />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/sports" element={<Sports />} />
+          <Route path="/signup" element={<SignUp />} />
+    
+        </Routes>
+        {/* <Slider /> */}
+
       </div>
-    </div>
+    </Router>
   );
 }
 
