@@ -1,10 +1,12 @@
 import React from 'react'
-import Slider from './Slider'
+import Slider from './Slider';
+import Navbar from './Navbar';
 
 function Home() {
   return (
-    <div>
-        <Slider />
+    <div className='text-white'>
+      <Slider />
+
     </div>
   )
 }
