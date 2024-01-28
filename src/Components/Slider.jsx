@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Api from "../Services/Api";
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
+import { useLocation } from 'react-router-dom';
+
 
 const Image_Url = "https://image.tmdb.org/t/p/original";
 const screenWidth = window.innerWidth;
@@ -8,14 +10,18 @@ const screenWidth = window.innerWidth;
 function Slider({ currentPage }) {
     const [list, setList] = useState([]);
     const elementRef = useRef();
+    const location = useLocation();
+
 
     useEffect(() => {
-        if (currentPage === '/tv') {
+        if (location.pathname === '/tv') {
             getTvShowsVideos();
+        } else if (location.pathname === '/movies') {
+            getAllMovies();
         } else {
             getTrendingMoviesVideos();
         }
-    }, []);
+    },  [location.pathname]);
 
     const getTrendingMoviesVideos = () => {
         Api.getTrendingMovies.then(res => {
@@ -29,6 +35,17 @@ function Slider({ currentPage }) {
 
     const getTvShowsVideos = () => {
         Api.getTvShows
+            .then(res => {
+                console.log(res.data.results);
+                setList(res.data.results);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    const getAllMovies = () => {
+        Api.getMovies
             .then(res => {
                 console.log(res.data.results);
                 setList(res.data.results);

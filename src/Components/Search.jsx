@@ -33,10 +33,10 @@ function Search() {
                     className="p-4 bg-gray-800 border rounded-sm w-full mt-6 ml-3"
                 />
             </div>
-            <div className='grid grid-cols-4 mt-6'>
+            <div className='grid grid-cols-5 mt-6'>
                 {allShows.map((item) => (
                     <div key={item.id} className="max-w-sm p-1 m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <img className="rounded-t-lg" src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} />
+                        <img className="rounded-t-lg" src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`} alt={item.title} />
                     </div>
                 ))}
             </div>

@@ -27,9 +27,7 @@ function App() {
             <Route path="/tv" element={<Tv />} />
             <Route path='/search' element={<Search />} />
             <Route path="/signup" element={<SignUp />} />
-            {/* <Route path="/slider" element={<Slider CurrentPage = {location.pathname} />} /> */}
           </Routes>
-          {/* <p>CurrentPage: {location.pathname}</p> */}
 
         </div>
       </div>
