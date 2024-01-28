@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Api from "../Services/Api";
-import { HiChevronRight, HiChevronLeft } from "react-icons/hi2";
-
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 
 const Image_Url = "https://image.tmdb.org/t/p/original";
 const screenWidth = window.innerWidth;
 
-function Slider() {
+function Slider({ currentPage }) {
     const [list, setList] = useState([]);
     const elementRef = useRef();
 
     useEffect(() => {
-        getTrendingMoviesVideos();
-
-    }, [])
+        if (currentPage === '/tv') {
+            getTvShowsVideos();
+        } else {
+            getTrendingMoviesVideos();
+        }
+    }, []);
 
     const getTrendingMoviesVideos = () => {
         Api.getTrendingMovies.then(res => {
@@ -25,35 +27,50 @@ function Slider() {
             });
     }
 
-    const rightSlider = (ele) => {
-        ele.scrollLeft += screenWidth - 110
+    const getTvShowsVideos = () => {
+        Api.getTvShows
+            .then(res => {
+                console.log(res.data.results);
+                setList(res.data.results);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    const slideRight = (element) => {
+        element.scrollLeft += 1400;
+    }
+    const slideLeft = (element) => {
+        element.scrollLeft -= 1400;
     }
 
-    const leftSlider = (ele) => {
-        ele.scrollLeft -= screenWidth - 110
-    }
 
     return (
-        <div>
-            <HiChevronLeft className='hidden md:block text-white cursor-pointer text-[40px] absolute mx-3 mt-[330px] '
-                onClick={() => leftSlider(elementRef.current)} />
-            <HiChevronRight className='hidden md:block text-white cursor-pointer text-[40px] absolute mx-3 mt-[330px] right-0'
-                onClick={() => rightSlider(elementRef.current)} />
+        <div className='relative'>
+            <IoChevronBackOutline
+                onClick={() => slideLeft(elementRef.current)}
+                className="text-[60px] text-white p-2 cursor-pointer mt-[300px] hidden md:block absolute"
+            />
+            <IoChevronForwardOutline
+                onClick={() => slideRight(elementRef.current)}
+                className="text-[60px] text-white p-2 cursor-pointer z-10 top-0 mt-[300px] hidden md:block absolute right-0"
+            />
 
             <div className='text-white flex overflow-x-auto px-18 scrollbar-hide scroll-smooth'
                 ref={elementRef}>
                 {
                     list.map((item, index) => (
                         <div key={item.id} className='pb-7 h-screen grid grid-cols-2'
-                         style={{
-                            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.1)), url(${Image_Url + item.backdrop_path})`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: "cover",
-                            // className: "flex flex-col justify-center text-center",
-                            minHeight: "700px", // Adjust the height as needed
-                            minWidth: "100%",   // Full width
-                            marginRight: "16px" // Adjust the margin as needed
-                        }}>
+                            style={{
+                                backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.1)), url(${Image_Url + item.backdrop_path})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
+                                // className: "flex flex-col justify-center text-center",
+                                minHeight: "700px",
+                                minWidth: "100%",
+                                marginRight: "16px"
+                            }}>
                             <div className='ml-20'>
                                 <h1 className='text-white font-bold text-4xl pt-60'>{item.title}</h1>
                                 <h1 className='mt-6 font-semibold'>{`${item.release_date} - ${item.original_language === 'en' ? 'English' : item.original_language}`}</h1>

@@ -1,33 +1,37 @@
-import './App.css';
-import Header from './Components/Header';
-import Slider from './Components/Slider';
-import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// App.js
+import React from 'react';
+import { useLocation, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import Home from './Components/Home';
 import WatchList from './Components/WatchList';
 import Movies from './Components/Movies';
-import Sports from './Components/Sports';
-import Home from './Components/Home';
+import Tv from './Components/Tv';
 import SignUp from './Components/SignUp';
-import Navbar from './Components/Navbar';
-import Main from './Components/Main';
-
+import Slider from './Components/Slider';
+import Search from './Components/Search';
 
 function App() {
+
   return (
+    
     <Router>
-      <div>
-        {/* <Header /> */}
-       
-        <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path='/' element={<Main />} />
-          <Route path="/watchlist" element={<WatchList />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/sports" element={<Sports />} />
-          <Route path="/signup" element={<SignUp />} />
+      <div className='flex h-screen w-full'>
+        <div className='w-1/12'>
+          <Navbar />
+        </div>
+        <div className='w-11/12 overflow-y-auto'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/watchlist" element={<WatchList />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/tv" element={<Tv />} />
+            <Route path='/search' element={<Search />} />
+            <Route path="/signup" element={<SignUp />} />
+            {/* <Route path="/slider" element={<Slider CurrentPage = {location.pathname} />} /> */}
+          </Routes>
+          {/* <p>CurrentPage: {location.pathname}</p> */}
 
-        </Routes>
-        {/* <Slider /> */}
-
+        </div>
       </div>
     </Router>
   );

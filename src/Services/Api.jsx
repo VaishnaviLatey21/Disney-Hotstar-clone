@@ -13,6 +13,15 @@ const api_key = "4927eaa78308464ff5455b8cc9f9bf61"
 
 const getTrendingMovies = axios.get(movieBaseUrl + "/trending/all/day?api_key=" + api_key);
 
+// https://api.themoviedb.org/3/discover/tv?api_key=
+const getTvShows = axios.get(movieBaseUrl + "/discover/tv?api_key=" + api_key);
+
+const getMovies = axios.get(movieBaseUrl + "/discover/movie?api_key=" + api_key);
+
+const getGenreList = axios.get(movieBaseUrl + "https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key);
+
+const getMovieByGenreId = (id) => axios.get(movieBaseUrl+"/discover/movie?api_key=" + api_key +"&with_genres="+id)
+
 
 
 // const getTrendingMovies = () => {
@@ -26,5 +35,5 @@ const getTrendingMovies = axios.get(movieBaseUrl + "/trending/all/day?api_key=" 
   
 
 export default {
-    getTrendingMovies
+    getTrendingMovies, getTvShows, getMovies, getGenreList, getMovieByGenreId
 }

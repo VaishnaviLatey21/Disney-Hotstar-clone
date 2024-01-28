@@ -50,7 +50,7 @@ function SignUp() {
 
       </div>
       <div className='flex flex-col items-center'>
-        <HiOutlineXMark className='color-white text-white absolute text-[30px] right-10 cursor-pointer' onClick={() => navigate("/")} />
+        <HiOutlineXMark className='color-white text-white absolute text-[30px] top-10 right-10 cursor-pointer' onClick={() => navigate("/")} />
 
         <h1 className='text-white text-center font-bold text-[30px] mt-6'>
           {isSignUp ? "Profiles" : "Login or SignUp"}
