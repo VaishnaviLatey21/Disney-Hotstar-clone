@@ -89,7 +89,7 @@ function Slider({ currentPage }) {
                                 marginRight: "16px"
                             }}>
                             <div className='ml-20'>
-                                <h1 className='text-white font-bold text-4xl pt-60'>{item.title}</h1>
+                                <h1 className='text-white font-bold text-4xl pt-60'>{item.title || item.name}</h1>
                                 <h1 className='mt-6 font-semibold'>{`${item.release_date} - ${item.original_language === 'en' ? 'English' : item.original_language}`}</h1>
                                 <h1 className='mt-6'>{item.overview}</h1>
                                 <button className='bg-gray-500 w-80 h-12 hover:bg-gray-400 text-white font-bold mt-6 rounded py-2'>

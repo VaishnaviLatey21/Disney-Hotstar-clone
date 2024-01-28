@@ -9,18 +9,39 @@ function Search() {
     const api_key = "4927eaa78308464ff5455b8cc9f9bf61";
 
     useEffect(() => {
-        const getAllList = async () => {
-            try {
-                const res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
-                setAllShows(res.data.results);
-                console.log(res.data.results);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
+        const fetchTopRatedMovies = async () => {
+          try {
+            const res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
+            setAllShows(res.data.results);
+            console.log(res.data.results);
+          } catch (error) {
+            console.error("Error fetching top-rated movies:", error);
+          }
         };
+    
+        fetchTopRatedMovies();
+      }, []);
 
-        getAllList();
-    }, [search]);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            if (search.trim() !== "") {
+              // Search for both movies and TV shows
+              const res = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${search}`);
+              setAllShows(res.data.results);
+              console.log(res.data.results);
+            } else {
+              // If search is empty, reset the result list
+              const res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
+              setAllShows(res.data.results);
+            }
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+    
+        fetchData();
+      }, [search]);
 
     return (
         <>
@@ -30,7 +51,7 @@ function Search() {
                     placeholder="Search shows..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="p-4 bg-gray-800 border rounded-sm w-full mt-6 ml-3"
+                    className="p-4 bg-gray-800 text-white border rounded-sm w-full mt-6 ml-3"
                 />
             </div>
             <div className='grid grid-cols-5 mt-6'>

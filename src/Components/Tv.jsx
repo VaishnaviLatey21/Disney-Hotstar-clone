@@ -12,7 +12,7 @@ function Tv() {
       try {
         const res = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${api_key}`);
         setTv(res.data.results);
-        console.log(res.data.results);
+        console.log("tv shows list", res.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
