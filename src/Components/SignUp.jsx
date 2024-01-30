@@ -34,7 +34,9 @@ function SignUp() {
       if (user && user.confirm) {
         const data = await user.confirm(otp);
         console.log("otp verified", data);
-        // navigate("/");
+        console.log("sign up successfully");
+        alert("sign in successfully")
+        navigate("/");
         setIsSignUp(true)
       } else {
         console.error("Invalid user object for verification");
@@ -53,13 +55,13 @@ function SignUp() {
         <HiOutlineXMark className='color-white text-white absolute text-[30px] top-10 right-10 cursor-pointer' onClick={() => navigate("/")} />
 
         <h1 className='text-white text-center font-bold text-[30px] mt-6'>
-          {isSignUp ? "Profiles" : "Login or SignUp"}
+          {(auth.currentUser) ? "Profiles" : "Login or SignUp"}
           {/* Login or Signup */}
         </h1>
 
         <div className="flex flex-col items-center mt-8">
           {
-            isSignUp ? (
+            (auth.currentUser) ? (
               <>
                 <h2 className='text-white text-[25px]'>Welcome, User!</h2>
                 <img src={userlogo} className='h-[100px] mt-7' />

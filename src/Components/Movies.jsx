@@ -11,7 +11,7 @@ function Movies() {
       try {
         const res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`);
         setMovie(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

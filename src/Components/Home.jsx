@@ -15,7 +15,7 @@ function Home() {
       try {
         const res = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}`);
         setMovies(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

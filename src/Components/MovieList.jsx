@@ -14,7 +14,7 @@ function MovieList({ genreId }) {
     const getMoviesByGenreId = async () => {
         try {
             const response = await Api.getMovieByGenreId(genreId);
-            console.log("genre id movie list: ", response.data.results);
+            // console.log("genre id movie list: ", response.data.results);
             setGenreList(response.data.results);
         } catch (error) {
             console.error(`Error fetching movies for genre ${genreId}:`, error);

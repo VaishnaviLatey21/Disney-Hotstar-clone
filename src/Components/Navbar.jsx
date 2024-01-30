@@ -1,18 +1,30 @@
 import React from 'react';
 import logo from "../Images/logo-d-plus.svg"
 import { Link, useNavigate } from 'react-router-dom';
-import { HiHome, HiSearch, HiOutlinePlusSm } from "react-icons/hi";
+import { HiHome, HiSearch, HiOutlinePlusSm, HiOutlineLogout } from "react-icons/hi";
 import { HiOutlineFilm, HiMiniUserCircle, HiMiniEllipsisVertical, HiBan } from "react-icons/hi2";
 import { GiBlackball } from "react-icons/gi";
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 
 function Navbar() {
 
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        console.log("profile");
-        navigate("/signup");
+    // const handleClick = () => {
+    //     console.log("profile");
+    //     navigate("/signup");
+    // }
+
+    const logOut = async () => {
+        try {
+            await signOut(auth)
+            alert("sign out successfully")
+            console.log("sign out successfully!!");
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     return (
@@ -42,11 +54,13 @@ function Navbar() {
                         <GiBlackball className='text-[30px] hover:text-[15px]' />
                         <h1 className='hidden group-hover:block text-[20px]'>TV</h1>
                     </Link>
-                    {/* <HiMiniUserCircle/>
-                    <HiSearch/>
-                    <HiHome/>
-                    <HiOutlineFilm/>
-                    <GiBlackball/> */}
+                    {auth.currentUser &&
+                        <Link to="" onClick={logOut} className='group flex items-center gap-3'>
+                            <HiOutlineLogout className='text-[30px] hover:text-[15px]' />
+                            <h1 className='hidden group-hover:block text-[20px]'>Signout</h1>
+                        </Link>
+                    }
+           
 
                 </div>
             </div>

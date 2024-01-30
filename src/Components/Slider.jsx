@@ -25,7 +25,7 @@ function Slider({ currentPage }) {
 
     const getTrendingMoviesVideos = () => {
         Api.getTrendingMovies.then(res => {
-            console.log(res.data.results);
+            // console.log(res.data.results);
             setList(res.data.results);
         })
             .catch(err => {
@@ -36,7 +36,7 @@ function Slider({ currentPage }) {
     const getTvShowsVideos = () => {
         Api.getTvShows
             .then(res => {
-                console.log(res.data.results);
+                // console.log(res.data.results);
                 setList(res.data.results);
             })
             .catch(err => {
@@ -47,7 +47,7 @@ function Slider({ currentPage }) {
     const getAllMovies = () => {
         Api.getMovies
             .then(res => {
-                console.log(res.data.results);
+                // console.log(res.data.results);
                 setList(res.data.results);
             })
             .catch(err => {
