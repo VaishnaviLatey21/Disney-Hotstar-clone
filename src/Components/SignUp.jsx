@@ -22,7 +22,7 @@ function SignUp() {
       const recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha", {})
       const confirmation = await signInWithPhoneNumber(auth, phone, recaptchaVerifier);
       setUser(confirmation);
-      console.log("confirmation object:", confirmation);
+      console.log("confirmation:", confirmation);
       console.log("otp sent successfully");
     } catch (error) {
       console.error("Error sending OTP:", error);
@@ -39,7 +39,7 @@ function SignUp() {
         navigate("/");
         setIsSignUp(true)
       } else {
-        console.error("Invalid user object for verification");
+        console.error("Invalid user for verification");
       }
     } catch (error) {
       console.error("Error verifying OTP:", error);
@@ -47,10 +47,12 @@ function SignUp() {
   }
 
   return (
-    <div className='grid grid-cols-2 h-screen bg-black'>
-      <div style={{ backgroundImage: `linear-gradient(to left,rgba(0,0,0,7),rgba(0,0,0,0.1)),url(${signin})` }} >
-
+    <div className='grid grid-cols-1 md:grid-cols-2 h-screen bg-black'>
+      <div style={{ backgroundImage: `linear-gradient(to left,rgba(0,0,0,7),rgba(0,0,0,0.1)),url(${signin})` }}
+        className="hidden md:block"
+      >
       </div>
+
       <div className='flex flex-col items-center'>
         <HiOutlineXMark className='color-white text-white absolute text-[30px] top-10 right-10 cursor-pointer' onClick={() => navigate("/")} />
 
@@ -64,7 +66,7 @@ function SignUp() {
             (auth.currentUser) ? (
               <>
                 <h2 className='text-white text-[25px]'>Welcome, User!</h2>
-                <img src={userlogo} className='h-[100px] mt-7' />
+                <img src={userlogo} className='h-[100px] mt-7' alt='user' />
                 <p className='text-white mt-3'>Name</p>
               </>
             ) : (

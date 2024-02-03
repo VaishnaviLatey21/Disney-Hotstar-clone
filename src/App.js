@@ -16,10 +16,10 @@ function App() {
     
     <Router>
       <div className='flex h-screen w-full'>
-        <div className='w-1/12'>
+        <div className='w-[65px] sm:w-[80px] lg:w-[100px]'>
           <Navbar />
         </div>
-        <div className='w-11/12 overflow-y-auto'>
+        <div className='w-full sm:w-11/12 overflow-y-auto'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/watchlist" element={<WatchList />} />
@@ -28,7 +28,6 @@ function App() {
             <Route path='/search' element={<Search />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
-
         </div>
       </div>
     </Router>

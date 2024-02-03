@@ -18,10 +18,13 @@ const getTvShows = axios.get(movieBaseUrl + "/discover/tv?api_key=" + api_key);
 
 const getMovies = axios.get(movieBaseUrl + "/discover/movie?api_key=" + api_key);
 
-const getGenreList = axios.get(movieBaseUrl + "https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key);
+const getGenreList = axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key);
 
-const getMovieByGenreId = (id) => axios.get(movieBaseUrl+"/discover/movie?api_key=" + api_key +"&with_genres="+id)
+const getMovieByGenreId = (id) => axios.get(movieBaseUrl+"/discover/movie?api_key=" + api_key +"&with_genres="+id);
 
+const getMovieVideos = (movieId) => axios.get(movieBaseUrl + "/movie/" + movieId + "/videos?api_key="+ api_key + "&language=en-US");
+
+const getTvVideos = (tvId) => axios.get(movieBaseUrl + "/tv/" + tvId + "/videos?api_key="+ api_key + "&language=en-US");
 
 
 // const getTrendingMovies = () => {
@@ -35,5 +38,5 @@ const getMovieByGenreId = (id) => axios.get(movieBaseUrl+"/discover/movie?api_ke
   
 
 export default {
-    getTrendingMovies, getTvShows, getMovies, getGenreList, getMovieByGenreId
+    getTrendingMovies, getTvShows, getMovies, getGenreList, getMovieByGenreId, getMovieVideos, getTvVideos
 }
