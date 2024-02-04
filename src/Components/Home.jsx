@@ -8,7 +8,6 @@ import YouTube from "react-youtube";
 
 function Home() {
   const [movies, setMovies] = useState([]);
-  // const [selectedImage, setSelectedImage] = useState(null);
   const api_key = "4927eaa78308464ff5455b8cc9f9bf61";
   const elementRef = useRef(null);
 
@@ -34,28 +33,6 @@ function Home() {
     element.scrollLeft -= 500;
   }
 
-  // const openVideoPopup = async (item) => {
-  //   if (selectedMovie !== item) {
-  //     setSelectedMovie(item);
-  //     setSelectedImage(item);
-  //     await getVideos(item.id);
-  //   }
-  // }
-
-  // const closePopup = () => {
-  //   setSelectedMovie(null);
-  //   setSelectedImage(null);
-  //   setVideos([]);
-  // };
-
-  // const opts = {
-  //   height: '390',
-  //   width: '640',
-  //   playerVars: {
-  //     origin: 'http://localhost:3000', // Add your application's domain here
-  //     autoplay: 1,
-  //   },
-  // };
 
   return (
     <div className='text-white'>
@@ -79,7 +56,6 @@ function Home() {
               key={item.id}
               src={`https://image.tmdb.org/t/p/w200/${item.poster_path}`}
               alt={item.title}
-              // onClick={() => openVideoPopup(item)}
             />
 
           ))}

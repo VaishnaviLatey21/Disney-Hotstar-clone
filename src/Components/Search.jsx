@@ -26,12 +26,10 @@ function Search() {
         const fetchData = async () => {
           try {
             if (search.trim() !== "") {
-              // Search for both movies and TV shows
               const res = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${search}`);
               setAllShows(res.data.results);
               console.log(res.data.results);
             } else {
-              // If search is empty, reset the result list
               const res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
               setAllShows(res.data.results);
             }

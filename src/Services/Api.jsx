@@ -27,15 +27,7 @@ const getMovieVideos = (movieId) => axios.get(movieBaseUrl + "/movie/" + movieId
 const getTvVideos = (tvId) => axios.get(movieBaseUrl + "/tv/" + tvId + "/videos?api_key="+ api_key + "&language=en-US");
 
 
-// const getTrendingMovies = () => {
-//     return axios.get(movieBaseUrl + "/genre/movie/list", {
-//       params: {
-//         api_key: api_key,
-//         language: 'en',
-//       },
-//     });
-//   };
-  
+ 
 
 export default {
     getTrendingMovies, getTvShows, getMovies, getGenreList, getMovieByGenreId, getMovieVideos, getTvVideos

@@ -153,7 +153,7 @@ function Slider({ currentPage }) {
                 ref={elementRef}>
                 {
                     list.map((item, index) => (
-                        <div key={item.id} className='pb-7 h-screen grid grid-cols-2'
+                        <div key={item.id} className='pb-7 h-screen grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 '
                             style={{
                                 backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.1)), url(${Image_Url + item.backdrop_path})`,
                                 backgroundRepeat: "no-repeat",
@@ -178,7 +178,7 @@ function Slider({ currentPage }) {
                                         </button>
                                         {videos.length > 0 && (
                                             <YouTube
-                                                videoId={videos[0].key} // Assuming you want to play the first video in the list
+                                                videoId={videos[0].key} 
                                                 opts={opts}
                                                 onReady={(e) => e.target.pauseVideo()}
                                             />
