@@ -132,7 +132,7 @@ function Slider({ currentPage }) {
         height: '390',
         width: '640',
         playerVars: {
-            origin: 'http://localhost:3000', // Add your application's domain here
+            origin: 'http://localhost:3000', 
             autoplay: 1,
         },
     };
